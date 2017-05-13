@@ -3,7 +3,7 @@ var player1 = "";
 var player2 = "";
 
 var throwdice = function() {
-  return Math.floor(6 * Math.random()) + 1;
+  return Math.floor( Math.random()*6) + 1;
 }
 
 function Player(turn) {
@@ -18,10 +18,11 @@ function Player(turn) {
 Player.prototype.rollone = function() {
   if (this.roll === 1) {
     this.tempscore = 0;
-    alert("Sorry " + this.playerName + ", you rolled a 1! Your turn is over!")
+    $("h2#alerts").text("Sorry " + this.playerName + " , you rolled a 1! Your turn is over!")
     // this.changeturn();
   } else {
     this.tempscore += this.roll;
+      $("h2#alerts").text( this.playerName + "  you rolled a "+ this.roll)
   }
 }
 
@@ -30,7 +31,7 @@ Player.prototype.hold = function() {
   this.totalscore += this.tempscore;
   this.tempscore = 0;
   // this.changeturn();
-  alert(this.playerName + ", your turn is over, pass the mouse!");
+    $("h2#alerts").text(this.playerName + " , your turn is over, pass the mouse!");
 }
 
 // // changing turn
@@ -44,7 +45,7 @@ Player.prototype.hold = function() {
 // check for 100
 Player.prototype.winnerCheck = function() {
   if (this.totalscore >= 100) {
-    alert(this.playerName + " You are the winner!");
+      $("h2#alerts").text(this.playerName + "   You are the winner!");
   }
 }
 
@@ -100,6 +101,7 @@ $(document).ready(function() {
     $("#die-roll-1").text(player1.roll);
     player1.rollone();
     $("#round-total-1").text(player1.tempscore);
+    // $("#alerts").fadeOut("10000")
   });
 
   $("button#player2-roll").click(function(event) {
@@ -107,6 +109,7 @@ $(document).ready(function() {
     $("#die-roll-2").text(player2.roll);
     player2.rollone();
     $("#round-total-2").text(player2.tempscore);
+    // $("#alerts").fadeOut("10000")
   });
 
   $("button#player1-hold").click(function(event) {
@@ -115,6 +118,7 @@ $(document).ready(function() {
     $("#round-total-1").empty();
     $("#die-roll-1").empty();
     player1.winnerCheck();
+
   });
 
   $("button#player2-hold").click(function(event) {
@@ -123,6 +127,7 @@ $(document).ready(function() {
     $("#round-total-2").empty();
     $("#die-roll-2").empty();
     player2.winnerCheck();
+
   });
 
 });
