@@ -62,6 +62,37 @@ var clearValues = function() {
   $(".player2Name").val("");
 }
 
+// Progress bar of player1
+function move1() {
+  var elem = document.getElementById("myBar1");
+
+  var id = setInterval(frame, player1.totalscore);
+  function frame() {
+    if (player1.totalscore >= 100) {
+      clearInterval(id);
+    } else {
+      player1.totalscore;
+      elem.style.width = player1.totalscore + '%';
+      elem.innerHTML = player1.totalscore * 1  + '%';
+    }
+  }
+}
+function move2() {
+  var elem = document.getElementById("myBar2");
+
+  var id = setInterval(frame, player2.totalscore);
+  function frame() {
+    if (player2.totalscore >= 100) {
+      clearInterval(id);
+    } else {
+      player2.totalscore;
+      elem.style.width = player2.totalscore + '%';
+      elem.innerHTML = player2.totalscore * 1  + '%';
+    }
+  }
+}
+
+
 // User Interface
 $(document).ready(function() {
 
@@ -92,6 +123,7 @@ $(document).ready(function() {
     $("#round-total-2").empty();
     $("#total-score-2").empty();
     $("#die-roll-2").empty();
+    $("#alerts").hide();
 
     $(".start-menu").show();
   });
@@ -118,6 +150,7 @@ $(document).ready(function() {
     $("#round-total-1").empty();
     $("#die-roll-1").empty();
     player1.winnerCheck();
+    move1();
 
   });
 
@@ -127,6 +160,7 @@ $(document).ready(function() {
     $("#round-total-2").empty();
     $("#die-roll-2").empty();
     player2.winnerCheck();
+    move2();
 
   });
 
