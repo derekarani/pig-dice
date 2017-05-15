@@ -3,7 +3,7 @@ var player1 = "";
 var player2 = "";
 
 var throwdice = function() {
-  return Math.floor( Math.random()*6) + 1;
+  return Math.floor(Math.random() * 6) + 1;
 }
 
 function Player(turn) {
@@ -22,7 +22,7 @@ Player.prototype.rollone = function() {
     // this.changeturn();
   } else {
     this.tempscore += this.roll;
-      $("h2#alerts").text( this.playerName + "  you rolled a "+ this.roll)
+    $("h2#alerts").text(this.playerName + "  you rolled a " + this.roll)
   }
 }
 
@@ -31,10 +31,10 @@ Player.prototype.hold = function() {
   this.totalscore += this.tempscore;
   this.tempscore = 0;
   // this.changeturn();
-    $("h2#alerts").text(this.playerName + " , your turn is over, pass the mouse!");
+  $("h2#alerts").text(this.playerName + " , your turn is over, pass the mouse!");
 }
 
-// // changing turn
+//  changing turn
 // Player.prototype.changeturn = function () {
 //   if (this.roll ===1) {
 //     this.turn = false;
@@ -45,7 +45,7 @@ Player.prototype.hold = function() {
 // check for 100
 Player.prototype.winnerCheck = function() {
   if (this.totalscore >= 100) {
-      $("h2#alerts").text(this.playerName + "   You are the winner!");
+    $("h2#alerts").text(this.playerName + "   You are the winner!");
   }
 }
 
@@ -67,27 +67,30 @@ function move1() {
   var elem = document.getElementById("myBar1");
 
   var id = setInterval(frame, player1.totalscore);
+
   function frame() {
     if (player1.totalscore >= 100) {
       clearInterval(id);
     } else {
       player1.totalscore;
       elem.style.width = player1.totalscore + '%';
-      elem.innerHTML = player1.totalscore * 1  + '%';
+      elem.innerHTML = player1.totalscore * 1 + '%';
     }
   }
 }
+
 function move2() {
   var elem = document.getElementById("myBar2");
 
   var id = setInterval(frame, player2.totalscore);
+
   function frame() {
     if (player2.totalscore >= 100) {
       clearInterval(id);
     } else {
       player2.totalscore;
       elem.style.width = player2.totalscore + '%';
-      elem.innerHTML = player2.totalscore * 1  + '%';
+      elem.innerHTML = player2.totalscore * 1 + '%';
     }
   }
 }
@@ -95,12 +98,21 @@ function move2() {
 
 // User Interface
 $(document).ready(function() {
+  //   ('.message a').click(function(){
+  //    $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+  // });
 
-  $("button#start").click(function(event) {
+  $(".login-form").submit(function(event) {
+    event.preventDefault();
+
+
+  // $("button#start").click(function(event) {
+
     player1 = new Player(true);
     player2 = new Player(false);
-    $(".player-console").show();
-    $(".start-menu").hide();
+
+    $(".start-menu").fadeOut();
+    $(".player-console").fadeIn();
 
     var player1Name = $(".player1Name").val();
     $("#player1Name").text(player1Name);
@@ -112,6 +124,8 @@ $(document).ready(function() {
     player2.playerName = player2Name;
 
   });
+
+
   $("button#new-game").click(function(event) {
     $(".player-console").hide();
     clearValues();
