@@ -44,7 +44,7 @@
   text-align: center;
 }
 .form1 .thumbnail {
-  background: #EF3B3A;
+  background: #FFFFFF;
   width: 150px;
   height: 150px;
   margin: 0 auto 30px;
@@ -55,9 +55,14 @@
   border-bottom-right-radius: 100%;
   box-sizing: border-box;
 }
+.imad{
+    padding-bottom: 100%;
+
+}
 .form1 .thumbnail img {
   display: block;
   width: 100%;
+
 }
 .form1 input {
   outline: 0;
@@ -72,6 +77,21 @@
   border-bottom-right-radius: 3px;
   box-sizing: border-box;
   font-size: 14px;
+}
+
+#new{
+  padding-top: 50px;
+  padding-left: 46%;
+
+}
+
+.player-console{
+  padding-top: 10%;
+}
+
+.dere{
+  background: #EF3B3A;
+  color: #FFFFFF;
 }
 .form1 button {
   outline: 0;
